@@ -4,13 +4,10 @@
 require_once plugin_dir_path(__DIR__) . 'triggers/functions.php';
 require_once plugin_dir_path(__DIR__) . 'export/index.php';
 
-$path = preg_replace('/wp-content(?!.*wp-content).*/', '', __DIR__);
-include($path . 'wp-load.php');
-require_once(ABSPATH . 'wp-admin/includes/plugin-install.php');
-require_once(ABSPATH . 'wp-admin/includes/file.php');
-require_once(ABSPATH . 'wp-admin/includes/misc.php');
-require_once(ABSPATH . 'wp-admin/includes/plugin.php');
-require_once(ABSPATH . 'wp-admin/includes/class-wp-upgrader.php');
+// Exit if accessed directly.
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 class Dashboard
 {
@@ -235,7 +232,7 @@ class Dashboard
         }
 
         if (!function_exists('activate_plugin')) {
-            require_once ABSPATH . 'wp-admin/includes/plugin.php';
+            exit;
         }
 
         if (!is_plugin_active($plugin_script)) {
@@ -249,13 +246,6 @@ class Dashboard
             wp_die(__('Sorry, you are not allowed to install plugins on this site.', 'framework'));
 
         $plugin = $_POST["plugin"];
-
-
-        // Include required libs for installation
-        require_once(ABSPATH . 'wp-admin/includes/plugin-install.php');
-        require_once(ABSPATH . 'wp-admin/includes/class-wp-upgrader.php');
-        require_once(ABSPATH . 'wp-admin/includes/class-wp-ajax-upgrader-skin.php');
-        require_once(ABSPATH . 'wp-admin/includes/class-plugin-upgrader.php');
 
         // Get Plugin Info
         $api = plugins_api(
