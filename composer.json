@@ -1,0 +1,9 @@
+{
+    "name": "bakoe/forms-gutenberg",
+    "description": "The Next Generation WordPress Form Builder. Build forms directly within Gutenberg editor live. Add & arrange form fields like blocks.",
+    "type": "wordpress-plugin",
+    "license": "GPLv2 or later",
+    "require": {
+      "composer/installers": "^1.6"
+    }
+  }
